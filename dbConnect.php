@@ -1,13 +1,19 @@
 <?php
-$server = "localhost";  // Change if using an online server
-$username = "root";     // Default for XAMPP/MAMP (change if needed)
-$password = "";         // Empty by default for XAMPP/MAMP
-$database = "wdv341";   // The database we created
+// Database connection details
+define('DB_HOST', 'localhost'); // Change this if your database is hosted elsewhere
+define('DB_NAME', 'mordecai_dbconnect'); // Replace with your actual database name
+define('DB_USER', 'mordecai_dbconnect'); // Replace with your MySQL username
+define('DB_PASS', 'Ma476351!'); // Replace with your MySQL password
 
 try {
-    $conn = new PDO("mysql:host=$server;dbname=$database", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Create a new PDO connection
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Connection successful message
+    echo "✅ Successfully connected to the database!";
 } catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+    // Connection failed message
+    echo "❌ Connection failed: " . $e->getMessage();
 }
 ?>
