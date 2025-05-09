@@ -35,18 +35,26 @@ try {
 
     <?php if (!empty($events)) : ?>
         <table>
-            <tr>
-                <th>Event Name</th>
-                <th>Event Date</th>
-                <th>Description</th>
-            </tr>
-            <?php foreach ($events as $event) : ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($event['event_name']); ?></td>
-                    <td><?php echo htmlspecialchars($event['event_date']); ?></td>
-                    <td><?php echo htmlspecialchars($event['event_description']); ?></td>
-                </tr>
-            <?php endforeach; ?>
+    <tr>
+        <th>Event Name</th>
+        <th>Event Date</th>
+        <th>Description</th>
+        <!-- add: -->
+        <th>Action</th>
+    </tr>
+<?php foreach ($events as $event) : ?>
+    <tr>
+        <td><?php echo htmlspecialchars($event['event_name']); ?></td>
+        <td><?php echo htmlspecialchars($event['event_date']); ?></td>
+        <td><?php echo htmlspecialchars($event['event_description']); ?></td>
+        <!-- add this cell: -->
+        <td>
+          <a href="updateEvent.php?recid=<?php echo $event['event_id']; ?>">
+            Update
+          </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
         </table>
     <?php else : ?>
         <p class="no-events">No events found.</p>
